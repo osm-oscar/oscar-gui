@@ -1,6 +1,9 @@
-@use '@angular/material' as mat;
+//@use '@angular/material' as mat;
+//
+//@include mat.core();
+@import 'assets/google/css/materialicons.css';
+@import 'assets/google/css/roboto.css';
 
-@include mat.core();
 $primary-color: #3f51b5;
 $secondary-color: #828688;
 $secondary-lighter: #cbcdcd;
