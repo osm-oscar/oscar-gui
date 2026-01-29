@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { latLng, tileLayer, Map } from 'leaflet';
 import { ItemStoreService } from '../../services/data/item-store.service';
 import { MapService } from '../../services/map/map.service';
+import { ConfigService } from 'src/app/config/config.service';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { radiusSearchTrigger } from '../search-result-view/search-result-view.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -26,7 +27,7 @@ export class MapComponent implements OnInit {
   };
   options = {
     layers: [
-      tileLayer('https://tiles.fmi.uni-stuttgart.de/{z}/{x}/{y}.png', {
+      tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '...',
       }),
@@ -39,6 +40,7 @@ export class MapComponent implements OnInit {
   contextMenuY = 10;
   contextMenuLatLng = null;
   constructor(
+    private configService: ConfigService,
     private itemStore: ItemStoreService,
     private mapService: MapService,
     private snackBar: MatSnackBar,
@@ -47,6 +49,12 @@ export class MapComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.options.layers = [
+      tileLayer(this.configService.getTilesUrl() + '/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '...',
+      }),
+    ];
     this.queryParams.setMap.subscribe(set => {
       if (set) {
         this.mapService.setSharedState(

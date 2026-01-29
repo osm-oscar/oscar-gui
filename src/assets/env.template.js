@@ -3,4 +3,5 @@
 
   // Environment variables
   window['env']['oscarUrl'] = '${OSCAR_URL}';
+  window['env']['tilesUrl'] = '${TILES_URL}';
 })(this);

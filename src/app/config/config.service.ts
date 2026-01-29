@@ -45,6 +45,9 @@ export class ConfigService {
     },
   };
   constructor() {}
+  getTilesUrl(): string {
+    return environment.tilesUrl;
+  }
   getOscarUrl(): string {
     return environment.oscarUrl;
     // return "https://routing.oscar-web.de";
