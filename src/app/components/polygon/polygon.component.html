@@ -1,0 +1,72 @@
+<div class="wrapper-polygon-list">
+  <div
+    style="
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      margin: 5px;
+      height: 30%;
+    ">
+    <div class="wrapper-id-set">
+      <h2 style="margin: 0">Identification:</h2>
+      <input
+        [(ngModel)]="id"
+        style="
+          max-width: 100px;
+          height: 20px;
+          border-radius: 10px;
+          padding: 0 5px;
+          text-align: center;
+        "
+        (focusout)="setId()"
+        appBlurOnEnter />
+    </div>
+    <div class="wrapper-polygon-props">
+      <button
+        class="add-polygon-button"
+        mat-raised-button
+        color="primary"
+        (click)="emitNewTab()">
+        Add New Polygon
+      </button>
+      <button mat-raised-button (click)="clearList()">Clear Points</button>
+    </div>
+  </div>
+  <div
+    *ngIf="polygonService.polygonMapping.get(uuid).polygonNodes.length !== 0"
+    cdkDropList
+    class="polygon-list">
+    <div
+      *ngFor="
+        let polygonNode of polygonService.polygonMapping.get(uuid).polygonNodes
+      "
+      cdkDrag
+      class="polygon-list-item">
+      <div
+        style="width: 13%; display: inline-flex; justify-content: space-around">
+        <i class="fa-solid fa-circle" [style.color]="polygonNode.color"></i>
+      </div>
+      <div
+        *ngIf="polygonNode.color !== ''"
+        style="
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 60%;
+        ">
+        <span>lat: {{ polygonNode.lat | number: '1.0-6' }}</span>
+        <span>lon: {{ polygonNode.lng | number: '1.0-6' }}</span>
+      </div>
+      <i
+        style="cursor: pointer; float: right"
+        (click)="removeNode(polygonNode.uuid)"
+        class="fas fa-times"></i>
+    </div>
+  </div>
+  <div
+    style="text-align: center; width: 100%; margin-top: 50px"
+    *ngIf="polygonService.polygonMapping.get(uuid).polygonNodes.length === 0">
+    Add a Point by clicking on the Map.
+  </div>
+</div>

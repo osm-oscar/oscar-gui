@@ -1,0 +1,12 @@
+<div *ngIf="parent">
+  {{ parent.name }}
+  <i
+    class="fa fa-lg fa-plus-circle refinement-button including-refinement"
+    (click)="addRefinement(parent)"></i>
+  <i
+    class="fa fa-lg fa-minus-circle refinement-button excluding-refinement"
+    (click)="addExRefinement(parent)"></i>
+  <span class="item-count badge rounded-pill bg-primary">{{
+    parent.itemCount
+  }}</span>
+</div>

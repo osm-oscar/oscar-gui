@@ -1,0 +1,26 @@
+<mat-tab-group
+  mat-stretch-tabs
+  #tabs
+  [hidden]="polygonsEmpty"
+  class="polygon-tabs"
+  (selectedTabChange)="changeTab($event)">
+  <mat-tab *ngFor="let uuid of tabIndexToId">
+    <ng-template mat-tab-label>
+      <label class="polygon-tab">
+        <i
+          [hidden]="uuidToName.get(uuid) !== ''"
+          class="fa-solid fa-draw-polygon fa-lg"></i>
+        <h2 [ngStyle]="{ margin: '0' }">{{ uuidToName.get(uuid) }}</h2>
+        <i
+          style="cursor: pointer"
+          (click)="closeTab(uuid)"
+          class="fas fa-times fa-lg"></i>
+      </label>
+    </ng-template>
+    <app-polygon
+      [polygonVisible]="polygonVisible"
+      (newNameEvent)="addName($event)"
+      (addTab)="addTab()"
+      [uuid]="uuid"></app-polygon>
+  </mat-tab>
+</mat-tab-group>

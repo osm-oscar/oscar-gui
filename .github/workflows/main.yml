@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: get npm
+      run: sudo apt install npm
+    - name: get angular
+      run: sudo npm i -g @angular/cli
+    - name: install dependencies
+      run: npm install
+    - name: build
+      run: ng build --prod

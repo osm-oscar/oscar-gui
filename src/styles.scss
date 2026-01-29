@@ -1,0 +1,84 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+$primary-color: #3f51b5;
+$secondary-color: #828688;
+$secondary-lighter: #cbcdcd;
+$secondary-darker: #323434;
+$back: #efedf1;
+// $my-app-theme: mat.define-theme(
+//   (
+//     color: (
+//       theme-type: light,
+//       primary: mat.$azure-palette,
+//     ),
+//     density: (
+//       scale: 0,
+//     ),
+//   )
+// );
+
+// :root {
+//   @include mat.all-component-themes($my-app-theme);
+
+// }
+button {
+  border-radius: 20px !important;
+}
+.bg-primary {
+  background-color: $primary-color;
+}
+* {
+  margin: 0;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+}
+.refinement-item {
+  font-size: small;
+}
+.item-count {
+  float: right;
+}
+.refinement-list {
+  margin-top: 10px;
+  width: 96%;
+  margin-left: 2%;
+  border-radius: 20px;
+}
+.refinement-button {
+  cursor: pointer;
+}
+
+.including-refinement {
+  size: 20px;
+  color: green;
+  margin-right: 3px;
+}
+.excluding-refinement {
+  color: #db4969;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
